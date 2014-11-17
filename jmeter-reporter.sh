@@ -48,7 +48,7 @@ print_table_row "Total number of calls" $NUMBER_OF_REQUESTS
 CALLS_PER_SECOND=`printf %.2f $(echo "scale=4;$NUMBER_OF_REQUESTS / $ELAPSED_TIME" | bc)`
 print_table_row "Calls per second" $CALLS_PER_SECOND
 
-NUMBER_OF_ERRORS=`awk -F',' 'int($4)>=400' $JTL_FILE | wc -l`
+NUMBER_OF_ERRORS=`awk -F',' 'int($4)>=400 || $4 ~ /[a-zA-Z]/' $JTL_FILE | wc -l`
 print_table_row "Number of errors" $NUMBER_OF_ERRORS
 
 ERROR_PERCENT=`printf %.1f $(echo "scale=3;$NUMBER_OF_ERRORS * 100/ $NUMBER_OF_REQUESTS" | bc)`
