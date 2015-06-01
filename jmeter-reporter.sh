@@ -18,7 +18,7 @@ function print_table_row {
   printf "  %-30s %20s\n" "$1" "$2"
 }
 
-while getopts ":j:" OPTION
+while getopts "j:" OPTION
 do
   case $OPTION in
     j ) JTL_FILE=$OPTARG;;

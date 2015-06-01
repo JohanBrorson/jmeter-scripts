@@ -16,7 +16,7 @@ function log_error {
 }
 
 # Parse command line arguments
-while getopts ":t:q:" OPTION
+while getopts "t:q:" OPTION
 do
   case $OPTION in
     t ) JMX_FILE=$OPTARG;;

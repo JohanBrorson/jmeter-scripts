@@ -50,7 +50,7 @@ function remove_illegal_characters() {
 }
 
 # Parse command line arguments
-while getopts ":j:" OPTION
+while getopts "j:" OPTION
 do
   case $OPTION in
     j ) JTL_FILE=$OPTARG;;
