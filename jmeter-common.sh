@@ -1,11 +1,4 @@
-#!/bin/sh
-
-function check_that_file_exist {
-  FILE="$1"
-  if [ ! -f "$FILE" ]; then
-    log_error "The file $FILE doesn't exist!"
-  fi
-}
+#!/bin/bash
 
 function log_error {
   echo "ERROR $*"
@@ -14,4 +7,11 @@ function log_error {
 
 function log_info {
   echo "INFO  $*"
+}
+
+function check_that_file_exist {
+  FILE="$1"
+  if [ ! -f "$FILE" ]; then
+    log_error "The file $FILE doesn't exist!"
+  fi
 }

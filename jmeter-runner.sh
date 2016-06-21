@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 LOGLEVEL=INFO
 RESULTS_DIR=results
@@ -22,7 +22,10 @@ do
   esac
 done
 
-# Check that the variable has been set
+if [[ -z $JMETER_HOME ]]; then
+  log_error "The variable JMETER_HOME is not defined"
+fi
+
 if [[ -z $JMX_FILE ]]; then
   usage
 fi
@@ -37,4 +40,4 @@ if [ ! -d "$RESULTS_DIR" ]; then
 fi
 
 # Run JMeter
-java -jar `dirname $0`/ApacheJMeter.jar -n -t $JMX_FILE -L $LOGLEVEL -j $LOGFILE -l $JTLFILE -q $PROPERTIES_FILE
+java -jar $JMETER_HOME/bin/ApacheJMeter.jar -n -t $JMX_FILE -L $LOGLEVEL -j $LOGFILE -l $JTLFILE -q $PROPERTIES_FILE
