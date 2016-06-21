@@ -2,6 +2,8 @@
 
 PERCENTILE_NUMBER=95
 
+. "$(dirname $0)/jmeter-common.sh"
+
 function usage {
   echo "Usage: `basename $0` -j test_result"
   echo -e "\t-j\tTest result (.jtl file)"
@@ -30,9 +32,7 @@ if [[ -z $JTL_FILE ]]; then
   usage
 fi
 
-if [ ! -f $JTL_FILE ]; then
-  echo "ERROR The file $JTL_FILE doesn't exist!"
-fi
+check_that_file_exist "$JTL_FILE"
 
 echo "PERFORMANCE TEST REPORT"
 
