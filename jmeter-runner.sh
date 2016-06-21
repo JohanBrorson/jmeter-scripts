@@ -3,15 +3,12 @@
 LOGLEVEL=INFO
 RESULTS_DIR=results
 
+. "$(dirname $0)/jmeter-common.sh"
+
 function usage {
   echo "Usage: `basename $0` -t test_plan [-q additional_properties_file]"
   echo -e "\t-t\tTest plan (.jmx file)"
   echo -e "\t-q\tAdditional properties file (optional)"
-  exit 1
-}
-
-function log_error {
-  echo "ERROR: $*"
   exit 1
 }
 
@@ -30,10 +27,7 @@ if [[ -z $JMX_FILE ]]; then
   usage
 fi
 
-# Check if the JMX file exist
-if [ ! -f $JMX_FILE ]; then
-  log_error "The file $JMX_FILE doesn't exist!"
-fi
+check_that_file_exist "$JMX_FILE"
 
 LOGFILE="$RESULTS_DIR/`date '+%Y%m%d%H%M'`-`basename ${JMX_FILE%\.*}`.log"
 JTLFILE="$RESULTS_DIR/`date '+%Y%m%d%H%M'`-`basename ${JMX_FILE%\.*}`.jtl"

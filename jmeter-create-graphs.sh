@@ -2,19 +2,12 @@
 
 WIN_FONT_PATH=/cygdrive/c/WINDOWS/Fonts
 
+. "$(dirname $0)/jmeter-common.sh"
+
 function usage {
   echo "Usage: `basename $0` -j test_result"
   echo -e "\t-j\tTest result (.jtl file)"
   exit 1
-}
-
-function log_error {
-  echo "ERROR $*"
-  exit 1
-}
-
-function log_info {
-  echo "INFO  $*"
 }
 
 function create_response_file() {
@@ -63,10 +56,7 @@ if [[ -z $JTL_FILE ]]; then
   usage
 fi
 
-# Check if the JTL file exist
-if [ ! -f $JTL_FILE ]; then
-  log_error "The file $JTL_FILE doesn't exist!"
-fi
+check_that_file_exist "$JTL_FILE"
 
 if [ -d $WIN_FONT_PATH ]
 then
