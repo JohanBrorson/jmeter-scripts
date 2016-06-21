@@ -1,0 +1,8 @@
+# Results folder
+results/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
