@@ -1,4 +1,4 @@
-# JMeter Scripts
+# JMeter Scripts [![Build Status](https://travis-ci.org/JohanBrorson/jmeter-scripts.svg?branch=master)](https://travis-ci.org/JohanBrorson/jmeter-scripts)
 
 ## Requirements
 * gnuplot
