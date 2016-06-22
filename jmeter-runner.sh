@@ -3,10 +3,10 @@
 LOGLEVEL=INFO
 RESULTS_DIR=results
 
-. "$(dirname $0)/jmeter-common.sh"
+. "$(dirname "$0")/jmeter-common.sh"
 
 function usage {
-  echo "Usage: `basename $0` -t test_plan [-q additional_properties_file]"
+  echo "Usage: $(basename "$0") -t test_plan [-q additional_properties_file]"
   echo -e "\t-t\tTest plan (.jmx file)"
   echo -e "\t-q\tAdditional properties file (optional)"
   exit 1
@@ -32,12 +32,13 @@ fi
 
 check_that_file_exist "$JMX_FILE"
 
-LOGFILE="$RESULTS_DIR/`date '+%Y%m%d%H%M'`-`basename ${JMX_FILE%\.*}`.log"
-JTLFILE="$RESULTS_DIR/`date '+%Y%m%d%H%M'`-`basename ${JMX_FILE%\.*}`.jtl"
+BASE_FILE_NAME="$(date '+%Y%m%d%H%M')-$(basename "${JMX_FILE%\.*}")"
+LOGFILE="$RESULTS_DIR/$BASE_FILE_NAME.log"
+JTLFILE="$RESULTS_DIR/$BASE_FILE_NAME.jtl"
 
 if [ ! -d "$RESULTS_DIR" ]; then
   mkdir "$RESULTS_DIR"
 fi
 
 # Run JMeter
-java -jar $JMETER_HOME/bin/ApacheJMeter.jar -n -t $JMX_FILE -L $LOGLEVEL -j $LOGFILE -l $JTLFILE -q $PROPERTIES_FILE
+java -jar "$JMETER_HOME/bin/ApacheJMeter.jar" -n -t "$JMX_FILE" -L "$LOGLEVEL" -j "$LOGFILE" -l "$JTLFILE" -q "$PROPERTIES_FILE"
